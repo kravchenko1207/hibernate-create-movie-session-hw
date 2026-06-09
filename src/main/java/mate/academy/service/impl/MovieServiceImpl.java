@@ -21,7 +21,7 @@ public class MovieServiceImpl implements MovieService {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = session.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.persist(movie);
             transaction.commit();

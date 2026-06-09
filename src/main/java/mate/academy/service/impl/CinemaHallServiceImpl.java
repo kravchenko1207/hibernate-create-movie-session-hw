@@ -1,8 +1,8 @@
 package mate.academy.service.impl;
 
+import java.util.List;
 import mate.academy.dao.CinemaHall;
 import mate.academy.service.CinemaHallService;
-import java.util.List;
 
 public class CinemaHallServiceImpl implements CinemaHallService {
     private CinemaHall cinemaHall;
@@ -18,11 +18,11 @@ public class CinemaHallServiceImpl implements CinemaHallService {
 
     @Override
     public CinemaHall get(Long id) {
-        return null;
+        return cinemaHall.get(id);
     }
 
     @Override
     public List<CinemaHall> getAll() {
-        return List.of();
+        return List.of(cinemaHall);
     }
 }

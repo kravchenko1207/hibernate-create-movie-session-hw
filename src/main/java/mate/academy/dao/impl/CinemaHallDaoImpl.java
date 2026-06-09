@@ -2,15 +2,14 @@ package mate.academy.dao.impl;
 
 import java.util.List;
 import mate.academy.dao.CinemaHall;
-import mate.academy.dao.CinemaHallDao;
 import mate.academy.exception.DataProcessingException;
 import mate.academy.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class CinemaHallDaoImpl implements CinemaHallDao {
+public class CinemaHallDaoImpl implements CinemaHall {
     @Override
-    public CinemaHallDao add(CinemaHallDao cinemaHall) {
+    public CinemaHall add(CinemaHall cinemaHall) {
         Transaction transaction = null;
         Session session = null;
         try {
@@ -32,24 +31,24 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
     }
 
     @Override
-    public CinemaHallDao get(Long id) {
+    public CinemaHall get(Long id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.get(CinemaHallDao.class, id);
+            return session.get(CinemaHall.class, id);
         } catch (Exception e) {
             throw new DataProcessingException("Can not get movie hall by id " + id, e);
         }
     }
 
     @Override
-    public List<CinemaHallDao> getAll() {
+    public List<CinemaHall> getAll() {
         Session session = null;
         Transaction transaction = null;
-        List<CinemaHallDao> cinemaHallList = null;
+        List<CinemaHall> cinemaHallList = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             cinemaHallList = session.createQuery(
-                    "FROM CinemaHall", CinemaHallDao.class).getResultList();
+                    "FROM CinemaHall", CinemaHall.class).getResultList();
             transaction.commit();
         } catch (Exception e) {
             throw new DataProcessingException("Can not get all cinema halls from DB ", e);
