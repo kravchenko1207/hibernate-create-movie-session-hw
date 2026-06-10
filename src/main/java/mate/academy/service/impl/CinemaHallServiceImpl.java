@@ -1,28 +1,33 @@
 package mate.academy.service.impl;
 
 import java.util.List;
-import mate.academy.dao.CinemaHall;
+import mate.academy.dao.CinemaHallDao;
+import mate.academy.lib.Inject;
+import mate.academy.lib.Service;
+import mate.academy.model.CinemaHall;
 import mate.academy.service.CinemaHallService;
 
+@Service
 public class CinemaHallServiceImpl implements CinemaHallService {
-    private CinemaHall cinemaHall;
+    private CinemaHallDao cinemaHallDao;
 
-    public CinemaHallServiceImpl(CinemaHall cinemaHall) {
-        this.cinemaHall = cinemaHall;
+    @Inject
+    public CinemaHallServiceImpl(CinemaHallDao cinemaHallDao) {
+        this.cinemaHallDao = cinemaHallDao;
     }
 
     @Override
     public CinemaHall add(CinemaHall cinemaHall) {
-        return cinemaHall.add(cinemaHall);
+        return cinemaHallDao.add(cinemaHall);
     }
 
     @Override
     public CinemaHall get(Long id) {
-        return cinemaHall.get(id);
+        return cinemaHallDao.get(id);
     }
 
     @Override
     public List<CinemaHall> getAll() {
-        return List.of(cinemaHall);
+        return cinemaHallDao.getAll();
     }
 }
